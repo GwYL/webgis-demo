@@ -37,12 +37,15 @@
 		      "esri/Map",
 		      "esri/views/MapView",
 		      "esri/widgets/Search",
+		      "esri/widgets/Legend",
+		      "esri/widgets/Compass",
+		      "esri/widgets/ScaleBar",
 		      "esri/tasks/Locator",
 		      "esri/core/watchUtils",
 		      "dojo/dom",
 		      "dojo/promise/all",
 		      "dojo/domReady!"
-				], (Map, MapView, Search, Locator, watchUtils, dom, all) => {
+				], (Map, MapView, Search, Legend, Compass, ScaleBar, Locator, watchUtils, dom, all) => {
 
 					// 主地图
 		      var map = new Map({
@@ -69,6 +72,31 @@
 		      minView.ui.components = []
 
 		      var extentMap = dom.byId("extentMap")
+
+		      // 图例
+		      var legend = new Legend({
+		      	view: view,
+		      	layerInfos: [{
+		      		layer: "streets-navigation-vector",
+		      		title: "图例"
+		      	}]
+		      })
+
+		      view.ui.add(legend, "bottom-right")
+
+		      // 指北针
+		      var compass = new Compass({
+		      	view: view
+		      })
+
+		      view.ui.add(compass, "top-right")
+
+		      // 比例尺
+		      var scalebar = new ScaleBar({
+		      	view: view
+		      })
+
+		      view.ui.add(scalebar, "bottom-right")
 
 		      view.then(function() {
 		      	view.goTo({
