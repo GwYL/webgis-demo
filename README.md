@@ -1,6 +1,6 @@
 # webgis-demo
 
-> A Vue.js project
+> vue-cli + esri-loader + webpack
 
 ## Build Setup
 
